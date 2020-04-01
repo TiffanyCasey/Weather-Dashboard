@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head class=container>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <title>Weather Dashboard</title>
+    
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">Weather Dashboard</header>
+
+    <!-- Side Search Bar -->
+    <div class="sidenav" id="weatherInput">
+        <h1>Search for a City:</h1>
+
+        <div class="input-group col-md-10">
+            <input class="form-control py-2" type="search" value="search" id="example-search-input">
+            <span class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                  <i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+
+        <!-- Prepends all searched cities -->
+        <div class="cityButtons"></div>  
+
+    </div>   
+   
+    <!-- Main container-->
+    <main class="container">
+
+        <!-- Row with Weather Displayed -->
+        <div class ="row" id="daily">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <h2>Daily Weather</h2>
+                        <p>
+                        <br>  
+                        <br>  
+                        <br>  
+                        <br>    
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+
+        <!-- Row with 5-day forcast -->
+        <div class="row" id="fiveDay">
+            <div class="card col-md-12">
+                <h2>5-Day Forecast:</h2>
+                <div class="card">
+                
+
+                    <div class="body">
+                        
+
+                        <div class="card col-md-2" id="day1">
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Date</li>
+                            <li class="list-group-item">Picture</li>
+                            <li class="list-group-item">Temp</li>
+                            <li class="list-group-item">Humidity</li>
+                            </ul>
+                        </div>
+
+                        <div class="card col-md-2" id="day1">
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Date</li>
+                            <li class="list-group-item">Picture</li>
+                            <li class="list-group-item">Temp</li>
+                            <li class="list-group-item">Humidity</li>
+                            </ul>
+                        </div>
+                        
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+  
+   
+    </main>
+
+  <!--link to JavaScript and jQuery & Moment -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
