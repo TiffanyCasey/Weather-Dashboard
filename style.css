@@ -1,3 +1,5 @@
+/*--Overall Styling */
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -5,30 +7,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-/* The sidebar menu */
-.sidenav {
-    height: 100%; 
-    width: 30%; 
-    position: fixed;
-    z-index: 1; 
-    top: 70px; 
-    left: 0;
-    background-color: rgb(247, 245, 245);
-    overflow-x: hidden; 
-    padding-top: 0px;
-  }
-
-  .container {
-    width: 70%;
-    padding-left: 20%;
-    padding-top: 20px;
-
-  }
-
 body {
     font-size: 16px;
     line-height: 1;
-  }
+}
 
 header {
     font-size: 30px;
@@ -38,41 +20,94 @@ header {
     padding: 20px;
 }
 
+.container {
+    width: 100%;
+    padding-top: 20px;
+    clear: both;
+    float: right;
+}
+
+section {
+    overflow: auto;
+    clear: both;
+    width: 100%;
+  }
+
+/* Search for a city sidebar */
+
+#sideNav {
+    height: 100%; 
+    position: fixed;
+    top: 70px; 
+    left: 0;
+    background-color: rgb(247, 245, 245);
+}
+
 h1 {
     font-size: 20px;
     text-align: left;
-    padding: 10px;
+    padding: 20px 0px 10px 5px;   
 }
+
+#basic-text1 {
+    background-color: blue;
+}
+
+.fas {
+    color: white;
+}
+
+/*--Daily Forecast */
 
 h2 {
     font-size: 30px;
     text-align: left;
-    font-weight: bolder !important;
-    padding: 15px 15px 15px 5px;
+    font-weight: bolder;
+    padding: 20px;
 }
 
-.input-group col {
-    margin: 10px;
-    height: 35px;
+p {
+    padding-bottom: 250px;
 }
 
-.btn {
-    color: white;
-    background-color: blue;
-    border-color: blue;
-}
-
-/*--5-Day Forcast */
+/*--5-Day Forecast */
 
 #fiveDay {
-    padding-top: 20px;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    font-size: 30px;
 }
 
+#dailyforcast {
+    width: 100%;
+    padding: 0;
+    margin: 5px 0px 0px 15px;
+}
 
-.list-group list-group-flush {
+.card-deck {
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
+}
+
+.card-body {
     background-color: blue;
+    color: white;
 }
 
+#card-header {
+    font-size: 20px;
+    text-align: left;
+    font-weight: bolder;
+}
+
+.card-text {
+    font-size: 13px;
+    line-height: 50px;
+    padding: 0;
+}
 
 /*--Media Queries */
 

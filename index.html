@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head class=container>
+<head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
@@ -17,81 +17,101 @@
 <body>
 
     <!-- Header -->
-    <header id="header">Weather Dashboard</header>
+    <header class="row">
+        <div class="col-md-12" id="header">Weather Dashboard</div>
+    </header>
 
-    <!-- Side Search Bar -->
-    <div class="sidenav" id="weatherInput">
-        <h1>Search for a City:</h1>
-
-        <div class="input-group col-md-10">
-            <input class="form-control py-2" type="search" value="search" id="example-search-input">
-            <span class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">
-                  <i class="fa fa-search"></i>
-              </button>
-            </span>
+    <!-- Search Bar Columns -->
+    <aside class="row">
+        <div class="col-md-3 form-group" id="sideNav">
+            <h1>Search for a City:</h1>
+            <div class="input-group md-form form-sm form-1 pl-0">
+                <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-text1"><i class="fas fa-search"
+                        aria-hidden="true"></i></span>
+                  </div>
+            </div>
+            <!-- Prepends all searched cities -->
+            <div class="cityButtons">
+            </div>  
         </div>
+    </aside>
 
-        <!-- Prepends all searched cities -->
-        <div class="cityButtons"></div>  
-
-    </div>   
-   
-    <!-- Main container-->
-    <main class="container">
-
-        <!-- Row with Weather Displayed -->
-        <div class ="row" id="daily">
+ <!-- Main container with Daily Weather and 5-Day Forecast-->
+    <main class="container col-md-9">
+       
+         <!-- Row with Daily Weather -->
+        <div class="row">    
             <div class="col-md-12">
                 <div class="card">
                     <div class="body">
                         <h2>Daily Weather</h2>
                         <p>
-                        <br>  
-                        <br>  
-                        <br>  
-                        <br>    
                         </p>
                     </div>
                 </div>
-            </div>
-        </div>    
-
-        <!-- Row with 5-day forcast -->
-        <div class="row" id="fiveDay">
-            <div class="card col-md-12">
-                <h2>5-Day Forecast:</h2>
-                <div class="card">
-                
-
-                    <div class="body">
-                        
-
-                        <div class="card col-md-2" id="day1">
-                            <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Date</li>
-                            <li class="list-group-item">Picture</li>
-                            <li class="list-group-item">Temp</li>
-                            <li class="list-group-item">Humidity</li>
-                            </ul>
-                        </div>
-
-                        <div class="card col-md-2" id="day1">
-                            <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Date</li>
-                            <li class="list-group-item">Picture</li>
-                            <li class="list-group-item">Temp</li>
-                            <li class="list-group-item">Humidity</li>
-                            </ul>
-                        </div>
-                        
-                    </div> 
-                </div> 
-            </div> 
+            </div>    
         </div>
-  
-   
+
+        <!-- Rows with 5-day forcast & header -->
+        <div class="row">
+            <div class="col-md-12" id="fiveDay">5-Day Forecast:</div>
+        </div>
+
+        <section class="row">
+            <div class="col-md-12" id="dailyforcast">
+                <div class="card-deck">
+
+                    <div class="card" id="day1">
+                        <div class="card-body">
+                            <div id="card-header">Date</div>
+                            <div class="card-text">Icon</div>
+                            <div class="card-text">Temp</div>
+                            <div class="card-text">Humidity</div>
+                        </div>    
+                    </div>
+
+                    <div class="card" id="day2">
+                        <div class="card-body">
+                            <div id="card-header">Date</div>
+                            <div class="card-text">Icon</div>
+                            <div class="card-text">Temp</div>
+                            <div class="card-text">Humidity</div>
+                        </div>    
+                    </div>
+
+                    <div class="card" id="day4">
+                        <div class="card-body">
+                            <div id="card-header">Date</div>
+                            <div class="card-text">Icon</div>
+                            <div class="card-text">Temp</div>
+                            <div class="card-text">Humidity</div>
+                        </div>    
+                    </div>
+
+                    <div class="card" id="day4">
+                        <div class="card-body">
+                            <div id="card-header">Date</div>
+                            <div class="card-text">Icon</div>
+                            <div class="card-text">Temp</div>
+                            <div class="card-text">Humidity</div>
+                        </div>    
+                    </div>
+                    <div class="card" id="day5">
+                        <div class="card-body">
+                            <div id="card-header">Date</div>
+                            <div class="card-text">Icon</div>
+                            <div class="card-text">Temp</div>
+                            <div class="card-text">Humidity</div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </section> 
+
     </main>
+ 
 
   <!--link to JavaScript and jQuery & Moment -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
