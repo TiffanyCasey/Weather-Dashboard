@@ -13,11 +13,12 @@ body {
 }
 
 header {
-    font-size: 30px;
+    font-size: 40px;
+    font-weight: bolder;
     background-color:  rgb(58, 58, 58);
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 25px;
 }
 
 .container {
@@ -38,7 +39,7 @@ section {
 #sideNav {
     height: 100%; 
     position: fixed;
-    top: 70px; 
+    top: 90px; 
     left: 0;
     background-color: rgb(247, 245, 245);
 }
@@ -68,6 +69,20 @@ h2 {
 
 p {
     padding-bottom: 250px;
+    color: grey;
+}
+
+a {
+    font-size: 18px;
+    color: grey;
+    line-height: 35px;
+}
+
+ul {
+    color: grey;
+    font-size: 18px;
+    line-height: 24px;
+    padding-left: 20px;
 }
 
 /*--5-Day Forecast */
