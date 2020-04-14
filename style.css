@@ -85,7 +85,40 @@ ul {
     padding-left: 20px;
 }
 
+.green {
+    background-color:green;
+    color: white;
+    margin-left: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+}
 
+.orange {
+    background-color: orange;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.red {
+    background-color: red;
+    color: white;
+    margin-left: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.purple {
+    background-color: purple;
+    color: white;
+    margin-left: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+}
 
 /*--5-Day Forecast */
 

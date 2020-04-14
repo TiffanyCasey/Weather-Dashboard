@@ -9,16 +9,15 @@ var day3 = moment().add(3, 'days').format('M/DD/YYYY');
 var day4 = moment().add(4, 'days').format('M/DD/YYYY');
 var day5 = moment().add(5, 'days').format('M/DD/YYYY');
 
-renderCityList(); // Retrieves stored cities 
-
-// Function to get Cities from local storage 
-function renderCityList() {
-    localStorage.getItem("cityInput"); 
-  }
-
 // On-click when user enters city 
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
+  renderCityList(); // Retrieves stored cities 
+
+// Function to get cities from local storage 
+  function renderCityList() {
+  localStorage.getItem("cityInput"); 
+  } // end of renderCityList function 
 
   var cityInput = $("#input").val(); //saves the city that has been entered
   localStorage.setItem("cityInput", cityInput); //saves city input to local storage 
@@ -49,20 +48,14 @@ $("#basic-text1").on("click", function(event) {
     var iconUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png"; //icon url 
     var lat = response.coord.lat; // Latiude 
     var lon = response.coord.lon; // Longitude 
-   
-    // Append details to the site 
-    $("#dailyWeather").append(
-      //styling
-      "<div class='col s12 m6'>"
   
-      // Daily Weather contents 
+    // Append daily details to the site 
+    $("#dailyWeather").append(
+      "<div class='col s12 m6'>"
       +  "<h2 class='daily'>" + response.name + " (" + startDate + ")" + "&nbsp" + "<img src='" + iconUrl  + "'>" + "</h2>"
       +  "<ul class='daily'>" + "Temperature: " +  response.main.temp + " °F" + "</ul>"
       +  "<ul class='daily'>" + "Humidity: " + response.main.humidity + "%" + "</ul>"
       +  "<ul class='daily'>" + "Wind Speed: " +  response.wind.speed + " MPH" + "</ul>"
-      +  "<ul class='daily'>" + "UV Index: " + response + "</ul>"
-  
-      //close out card styling 
       + "</div>"
       ); // End of append 
 
@@ -70,7 +63,6 @@ $("#basic-text1").on("click", function(event) {
   var fiveDay = "https://api.openweathermap.org/data/2.5/onecall?" 
   + "lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=45e45c0bb2ef540df33fa21a29aafa8a";  
     console.log("fiveDay", fiveDay);
-    console.log("lat", lat);
 
    //AJAX call for Five Day & UV
   $.ajax({
@@ -78,12 +70,35 @@ $("#basic-text1").on("click", function(event) {
     method: "GET",
     }).then(function(response) {
     
-      //icon url  
+      //icon urls
       var iconUrl1 = "http://openweathermap.org/img/w/" + response.daily[0].weather[0].icon + ".png";
       var iconUrl2 = "http://openweathermap.org/img/w/" + response.daily[1].weather[0].icon + ".png";
       var iconUrl3 = "http://openweathermap.org/img/w/" + response.daily[2].weather[0].icon + ".png";
       var iconUrl4 = "http://openweathermap.org/img/w/" + response.daily[3].weather[0].icon + ".png";
       var iconUrl5 = "http://openweathermap.org/img/w/" + response.daily[4].weather[0].icon + ".png";
+
+      // // UV Variable
+      // var UV = response.current.vie
+      
+      // Adding in UV Index to daily weather 
+      $("#dailyWeather").append(
+        "<div class='col s12 m6'>"
+       + "<button class='w3-button' id='uvIndex' class='daily'>" + "UV Index: " + response.current.uvi + "</button>"
+       + "</div>"
+       ); // End of append 
+
+         //UV Index colors 
+      if (response.current.uvi <= 2) {
+        $("#uvIndex").addClass("green");
+       } else if (response.current.uvi <= 5) {
+         $("#uvIndex").addClass("yellow");
+       } else if (response.current.uvi <= 7) {
+           $("#uvIndex").addClass("orange");
+       } else if (response.current.uvi <= 10) {
+           $("#uvIndex").addClass("red");
+       } else if (response.current.uvi <= 40) {
+           $("#uvIndex").addClass("purple");
+       };
 
       // HEADER
       $("#fiveDay").append(
@@ -92,63 +107,62 @@ $("#basic-text1").on("click", function(event) {
       ); // End of append 
 
        // DAY ONE DETAILS
-       $("#day1").append(
+      $("#day1").append(
+       "<div class='fiveDayCard card col s12 m6'>"
+       +  "<div class='card-body'>"
+       +  "<div class='card-header'>" + day1 +"</div>"
+       +  "<div class='card-text'>" + "<img src='" + iconUrl1 + "'>" +"</div>"
+       +  "<div class='card-text'>" + "Temp: " + response.daily[0].temp.day + " °F" + "</div>"
+       +  "<div class='card-text'>" + "Humidity: " + response.daily[0].humidity + "%" + "</div>" 
+       + "</div>" 
+      ); // End of append 
+
+      //DAY TWO DETAILS
+      $("#day2").append(
         "<div class='fiveDayCard card col s12 m6'>"
         +  "<div class='card-body'>"
-        +  "<div class='card-header'>" + day1 +"</div>"
+        +  "<div class='card-header'>" + day2 +"</div>"
         +  "<div class='card-text'>" + "<img src='" + iconUrl2 + "'>" +"</div>"
-        +  "<div class='card-text'>" + "Temp: " + response.daily[0].temp.day + " °F" + "</div>"
-        +  "<div class='card-text'>" + "Humidity: " + response.daily[0].humidity + "%" + "</div>" 
+        +  "<div class='card-text'>" + "Temp: " + response.daily[1].temp.day + " °F" + "</div>"
+        +  "<div class='card-text'>" + "Humidity: " + response.daily[1].humidity + "%" + "</div>" 
         + "</div>" 
-        ); // End of append 
+      ); // End of append 
 
-        //DAY TWO DETAILS
-        $("#day2").append(
-          "<div class='fiveDayCard card col s12 m6'>"
-          +  "<div class='card-body'>"
-          +  "<div class='card-header'>" + day2 +"</div>"
-          +  "<div class='card-text'>" + "<img src='" + iconUrl2 + "'>" +"</div>"
-          +  "<div class='card-text'>" + "Temp: " + response.daily[1].temp.day + " °F" + "</div>"
-          +  "<div class='card-text'>" + "Humidity: " + response.daily[1].humidity + "%" + "</div>" 
-          + "</div>" 
-          ); // End of append 
+      //DAY THREE DETAILS
+      $("#day3").append(
+        "<div class='fiveDayCard card col s12 m6'>"
+        +  "<div class='card-body'>"
+        +  "<div class='card-header'>" + day3 +"</div>"
+        +  "<div class='card-text'>" + "<img src='" + iconUrl3 + "'>" +"</div>"
+        +  "<div class='card-text'>" + "Temp: " + response.daily[2].temp.day + " °F" + "</div>"
+        +  "<div class='card-text'>" + "Humidity: " + response.daily[2].humidity + "%" + "</div>" 
+        + "</div>" 
+      ); // End of append 
 
-          //DAY THREE DETAILS
-          $("#day3").append(
-            "<div class='fiveDayCard card col s12 m6'>"
-            +  "<div class='card-body'>"
-            +  "<div class='card-header'>" + day3 +"</div>"
-            +  "<div class='card-text'>" + "<img src='" + iconUrl3 + "'>" +"</div>"
-            +  "<div class='card-text'>" + "Temp: " + response.daily[2].temp.day + " °F" + "</div>"
-            +  "<div class='card-text'>" + "Humidity: " + response.daily[2].humidity + "%" + "</div>" 
-            + "</div>" 
-            ); // End of append 
+      //DAY FOUR DETAILS
+      $("#day4").append(
+        "<div class='fiveDayCard card col s12 m6'>"
+        +  "<div class='card-body'>"
+        +  "<div class='card-header'>" + day4 +"</div>"
+        +  "<div class='card-text'>" + "<img src='" + iconUrl4 + "'>" +"</div>"
+        +  "<div class='card-text'>" + "Temp: " + response.daily[3].temp.day + " °F" + "</div>"
+        +  "<div class='card-text'>" + "Humidity: " + response.daily[3].humidity + "%" + "</div>" 
+        + "</div>" 
+      ); // End of append 
 
-            //DAY FOUR DETAILS
-            $("#day4").append(
-              "<div class='fiveDayCard card col s12 m6'>"
-              +  "<div class='card-body'>"
-              +  "<div class='card-header'>" + day4 +"</div>"
-              +  "<div class='card-text'>" + "<img src='" + iconUrl4 + "'>" +"</div>"
-              +  "<div class='card-text'>" + "Temp: " + response.daily[3].temp.day + " °F" + "</div>"
-              +  "<div class='card-text'>" + "Humidity: " + response.daily[3].humidity + "%" + "</div>" 
-              + "</div>" 
-              ); // End of append 
-
-              //DAY FIVE DETAILS
-              $("#day5").append(
-                "<div class='fiveDayCard card col s12 m6'>"
-                +  "<div class='card-body'>"
-                +  "<div class='card-header'>" + day5 +"</div>"
-                +  "<div class='card-text'>" + "<img src='" + iconUrl5 + "'>" +"</div>"
-                +  "<div class='card-text'>" + "Temp: " + response.daily[4].temp.day + " °F" + "</div>"
-                +  "<div class='card-text'>" + "Humidity: " + response.daily[4].humidity + "%" + "</div>" 
-                + "</div>" 
-                ); // End of append 
+      //DAY FIVE DETAILS
+      $("#day5").append(
+        "<div class='fiveDayCard card col s12 m6'>"
+        +  "<div class='card-body'>"
+        +  "<div class='card-header'>" + day5 +"</div>"
+        +  "<div class='card-text'>" + "<img src='" + iconUrl5 + "'>" +"</div>"
+        +  "<div class='card-text'>" + "Temp: " + response.daily[4].temp.day + " °F" + "</div>"
+        +  "<div class='card-text'>" + "Humidity: " + response.daily[4].humidity + "%" + "</div>" 
+        + "</div>" 
+      ); // End of append 
         
       }) // End of ajax then response  
     }) // End of ajax then response 
-}); // End of city button on-click
-  
+  }); // End of city button on-click
 }); // end of document ready function
 
