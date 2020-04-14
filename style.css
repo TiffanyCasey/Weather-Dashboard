@@ -85,6 +85,8 @@ ul {
     padding-left: 20px;
 }
 
+
+
 /*--5-Day Forecast */
 
 #fiveDay {
@@ -93,6 +95,7 @@ ul {
     padding-top: 30px;
     padding-bottom: 15px;
     font-size: 30px;
+    color: black;
 }
 
 #dailyforcast {
@@ -104,24 +107,33 @@ ul {
 .card-deck {
     margin: 0 auto; 
     float: none; 
-    margin-bottom: 10px; 
-}
-
-.card-body {
-    background-color: blue;
-    color: white;
-}
-
-#card-header {
-    font-size: 20px;
-    text-align: left;
-    font-weight: bolder;
+    margin-bottom: 10px;
 }
 
 .card-text {
+   padding-left: 20px;
+}
+
+.fiveDayCard {
+    border: none;
+}
+
+.card-header {
+    font-size: 18px;
+    font-weight: bolder;
+    color: white;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    border: none;
+}
+
+.card-body {
+    padding-left: 20px;
     font-size: 13px;
-    line-height: 50px;
-    padding: 0;
+    line-height: 30px;
+    color: white;
+    background-color: blue;
+    border: none;
 }
 
 /*--Media Queries */
