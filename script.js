@@ -9,19 +9,21 @@ var day3 = moment().add(3, 'days').format('M/DD/YYYY');
 var day4 = moment().add(4, 'days').format('M/DD/YYYY');
 var day5 = moment().add(5, 'days').format('M/DD/YYYY');
 
+
+
+
 // On-click when user enters city 
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
-  renderCityList(); // Retrieves stored cities 
 
-// Function to get cities from local storage 
-  function renderCityList() {
-  localStorage.getItem("cityInput"); 
-  } // end of renderCityList function 
 
   var cityInput = $("#input").val(); //saves the city that has been entered
-  localStorage.setItem("cityInput", cityInput); //saves city input to local storage 
-
+  var allCities = []; // Array to hold all searched cities
+  
+  allCities = JSON.parse(localStorage.getItem("allCities")) || []; // Get cities
+  allCities.push(cityInput); // pushes new cities entered to array 
+  localStorage.setItem("allCities", JSON.stringify(allCities)); //saves city input to local storage 
+  
   // Append List of Cities to Web Page 
   $("#cityButtons").append (
     //styling 
@@ -30,8 +32,6 @@ $("#basic-text1").on("click", function(event) {
   // City text
   + "<a href='#' class='list-group-item'>" + cityInput + "</a>"
   + "</div>")
-
-  renderCityList(); // Retrieves stored cities 
 
   // QueryURL to Open Weather App for One Day 
   var oneDay ="https://api.openweathermap.org/data/2.5/weather?q=" 
@@ -76,10 +76,7 @@ $("#basic-text1").on("click", function(event) {
       var iconUrl3 = "http://openweathermap.org/img/w/" + response.daily[2].weather[0].icon + ".png";
       var iconUrl4 = "http://openweathermap.org/img/w/" + response.daily[3].weather[0].icon + ".png";
       var iconUrl5 = "http://openweathermap.org/img/w/" + response.daily[4].weather[0].icon + ".png";
-
-      // // UV Variable
-      // var UV = response.current.vie
-      
+   
       // Adding in UV Index to daily weather 
       $("#dailyWeather").append(
         "<div class='col s12 m6'>"
@@ -87,7 +84,7 @@ $("#basic-text1").on("click", function(event) {
        + "</div>"
        ); // End of append 
 
-         //UV Index colors 
+      // UV Index colors 
       if (response.current.uvi <= 2) {
         $("#uvIndex").addClass("green");
        } else if (response.current.uvi <= 5) {
