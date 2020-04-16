@@ -1,7 +1,4 @@
-$(document).ready(function() {
-console.log("ready!");
-
-// Dates
+//Dates
 var startDate = moment().format('M/DD/YYYY');  // Current Date
 var day1 = moment().add(1, 'days').format('M/DD/YYYY');
 var day2 = moment().add(2, 'days').format('M/DD/YYYY');
@@ -9,30 +6,20 @@ var day3 = moment().add(3, 'days').format('M/DD/YYYY');
 var day4 = moment().add(4, 'days').format('M/DD/YYYY');
 var day5 = moment().add(5, 'days').format('M/DD/YYYY');
 
-
-
+$(document).ready(function() {
+console.log("ready!");
 
 // On-click when user enters city 
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
 
-
   var cityInput = $("#input").val(); //saves the city that has been entered
   var allCities = []; // Array to hold all searched cities
-  
+
   allCities = JSON.parse(localStorage.getItem("allCities")) || []; // Get cities
   allCities.push(cityInput); // pushes new cities entered to array 
   localStorage.setItem("allCities", JSON.stringify(allCities)); //saves city input to local storage 
   
-  // Append List of Cities to Web Page 
-  $("#cityButtons").append (
-    //styling 
-    "<div class='list-group'>"
-
-  // City text
-  + "<a href='#' class='list-group-item'>" + cityInput + "</a>"
-  + "</div>")
-
   // QueryURL to Open Weather App for One Day 
   var oneDay ="https://api.openweathermap.org/data/2.5/weather?q=" 
   + cityInput + "&units=imperial" + "&appid=45e45c0bb2ef540df33fa21a29aafa8a";
@@ -69,7 +56,7 @@ $("#basic-text1").on("click", function(event) {
     url: fiveDay,
     method: "GET",
     }).then(function(response) {
-    
+      
       //icon urls
       var iconUrl1 = "http://openweathermap.org/img/w/" + response.daily[0].weather[0].icon + ".png";
       var iconUrl2 = "http://openweathermap.org/img/w/" + response.daily[1].weather[0].icon + ".png";
@@ -157,9 +144,34 @@ $("#basic-text1").on("click", function(event) {
         +  "<div class='card-text'>" + "Humidity: " + response.daily[4].humidity + "%" + "</div>" 
         + "</div>" 
       ); // End of append 
-        
+      
+      showCities(); // calls function to append cities
+
       }) // End of ajax then response  
     }) // End of ajax then response 
   }); // End of city button on-click
+
+//  Function to retrieve the stored input that was saved in each input 
+function showCities() {
+  $("#cityButtons").empty();
+  
+  var arrayFromStorage = JSON.parse(localStorage.getItem("allCities"));
+  var arrayLength = arrayFromStorage.length;
+
+  for (var i = 0; i < arrayLength; i++) {
+    var cityNameFromArray = arrayFromStorage[i];
+
+    $("#cityButtons").append (
+      //styling 
+      "<div class='list-group'>"
+  
+    // City text
+    + "<button class='list-group-item'>" + cityNameFromArray 
+    + "</button>")
+  } // end of loop 
+} // end of showCities function 
+
+showCities (); // calls function to append cities upon page load 
+
 }); // end of document ready function
 
