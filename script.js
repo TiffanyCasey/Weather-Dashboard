@@ -13,6 +13,15 @@ console.log("ready!");
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
 
+  // empties out previous data so that it only shows selected weather 
+  $("#dailyWeather").empty();
+  $("#fiveDay").empty();
+  $("#day1").empty();
+  $("#day2").empty();
+  $("#day3").empty();
+  $("#day4").empty();
+  $("#day5").empty();
+
   var cityInput = $("#input").val(); //saves the city that has been entered
   var allCities = []; // Array to hold all searched cities
 
@@ -146,20 +155,18 @@ $("#basic-text1").on("click", function(event) {
       ); // End of append 
       
       showCities(); // calls function to append cities
-
       }) // End of ajax then response  
     }) // End of ajax then response 
   }); // End of city button on-click
 
 //  Function to retrieve the stored input that was saved in each input 
 function showCities() {
-  $("#cityButtons").empty();
-  
-  var arrayFromStorage = JSON.parse(localStorage.getItem("allCities"));
-  var arrayLength = arrayFromStorage.length;
+  $("#cityButtons").empty(); // emties out previous array 
+  var arrayFromStorage = JSON.parse(localStorage.getItem("allCities")); // Makes all cities searched a string
+  var arrayLength = arrayFromStorage.length; // // limits length of array
 
-  for (var i = 0; i < arrayLength; i++) {
-    var cityNameFromArray = arrayFromStorage[i];
+  for (var i = 0; i < arrayLength; i++) { // Loop so it prepends all cities within the length of the array
+    var cityNameFromArray = arrayFromStorage[i]; //
 
     $("#cityButtons").append (
       //styling 
