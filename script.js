@@ -12,6 +12,7 @@ console.log("ready!");
 // On-click when user enters city 
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
+  
 
   // empties out previous data so that it only shows selected weather 
   $("#dailyWeather").empty();
@@ -161,9 +162,9 @@ $("#basic-text1").on("click", function(event) {
 
 //  Function to retrieve the stored input that was saved in each input 
 function showCities() {
-  $("#cityButtons").empty(); // emties out previous array 
-  var arrayFromStorage = JSON.parse(localStorage.getItem("allCities")); // Makes all cities searched a string
-  var arrayLength = arrayFromStorage.length; // // limits length of array
+  $("#cityButtons").empty(); // empties out previous array 
+  var arrayFromStorage = JSON.parse(localStorage.getItem("allCities")) || []; // Makes all cities searched a string
+  var arrayLength = arrayFromStorage.length; // limits length of array
 
   for (var i = 0; i < arrayLength; i++) { // Loop so it prepends all cities within the length of the array
     var cityNameFromArray = arrayFromStorage[i]; //
@@ -179,6 +180,11 @@ function showCities() {
 } // end of showCities function 
 
 showCities (); // calls function to append cities upon page load 
+
+$("#cityButtons").on("click", ".list-group-item", function(event) {
+  event.preventDefault();
+  console.log($(this).text());
+})
 
 }); // end of document ready function
 
