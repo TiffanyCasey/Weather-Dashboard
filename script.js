@@ -12,7 +12,17 @@ console.log("ready!");
 // On-click when user enters city 
 $("#basic-text1").on("click", function(event) {
   event.preventDefault();
-  
+  var cityInput = $("#input").val(); //saves the city that has been entered
+  var allCities = []; // Array to hold all searched cities
+
+  allCities = JSON.parse(localStorage.getItem("allCities")) || []; // Get cities
+  allCities.push(cityInput); // pushes new cities entered to array 
+  localStorage.setItem("allCities", JSON.stringify(allCities)); //saves city input to local storage 
+
+  showWeather(cityInput); 
+}); // End of city button on-click
+
+function showWeather(cityInput) {
 
   // empties out previous data so that it only shows selected weather 
   $("#dailyWeather").empty();
@@ -23,13 +33,6 @@ $("#basic-text1").on("click", function(event) {
   $("#day4").empty();
   $("#day5").empty();
 
-  var cityInput = $("#input").val(); //saves the city that has been entered
-  var allCities = []; // Array to hold all searched cities
-
-  allCities = JSON.parse(localStorage.getItem("allCities")) || []; // Get cities
-  allCities.push(cityInput); // pushes new cities entered to array 
-  localStorage.setItem("allCities", JSON.stringify(allCities)); //saves city input to local storage 
-  
   // QueryURL to Open Weather App for One Day 
   var oneDay ="https://api.openweathermap.org/data/2.5/weather?q=" 
   + cityInput + "&units=imperial" + "&appid=45e45c0bb2ef540df33fa21a29aafa8a";
@@ -158,7 +161,7 @@ $("#basic-text1").on("click", function(event) {
       showCities(); // calls function to append cities
       }) // End of ajax then response  
     }) // End of ajax then response 
-  }); // End of city button on-click
+  } // end of show weather function 
 
 //  Function to retrieve the stored input that was saved in each input 
 function showCities() {
@@ -181,10 +184,12 @@ function showCities() {
 
 showCities (); // calls function to append cities upon page load 
 
+// show cities on click 
 $("#cityButtons").on("click", ".list-group-item", function(event) {
   event.preventDefault();
-  console.log($(this).text());
-})
+  var cityInput = ($(this).text());
+  showWeather(cityInput); 
+}) // end of city buttons on click
 
 }); // end of document ready function
 
